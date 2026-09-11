@@ -99,6 +99,12 @@ public struct FireControllableEntry
     /// </summary>
     public bool HasManualReload;
 
+    /// <summary>
+    /// The entity's firerate per second.
+    /// </summary>
+    // public float? FireRateModified;
+
+
     public FireControllableEntry(NetEntity entity, NetCoordinates coordinates, string name, int? ammoCount = null, bool hasManualReload = false)
     {
         NetEntity = entity;

@@ -267,6 +267,14 @@ public sealed partial class FireControlSystem : EntitySystem
             foreach (var controllable in server.Controlled)
             {
                 var controlled = new FireControllableEntry();
+
+                // //Gets the weapon's Firerate
+                // //Kind of shitcode but idk how else to do it
+                // if (EntityManager.TryGetComponent<GunComponent>(controllable, out var gunComp))
+                // {
+                //     controlled.FireRateModified = gunComp.FireRateModified;
+                // }
+
                 controlled.NetEntity = EntityManager.GetNetEntity(controllable);
                 controlled.Coordinates = GetNetCoordinates(Transform(controllable).Coordinates);
                 controlled.Name = MetaData(controllable).EntityName;
@@ -293,14 +301,13 @@ public sealed partial class FireControlSystem : EntitySystem
         if (TryComp<BasicEntityAmmoProviderComponent>(weaponEntity, out var basicAmmo))
         {
             var hasRecharge = HasComp<RechargeBasicEntityAmmoComponent>(weaponEntity);
-
-            return (basicAmmo.Count, !hasRecharge);
+            return (basicAmmo.Count, !hasRecharge, basicAmmo.Capacity);
         }
 
         if (TryComp<BallisticAmmoProviderComponent>(weaponEntity, out var ballisticAmmo))
         {
             // if we're InfiniteUnspawned consider us to be non-reloading when at 0 ammo
-            return (ballisticAmmo.Count, ballisticAmmo.Cycleable && (ballisticAmmo.Count != 0 || !ballisticAmmo.InfiniteUnspawned));
+            return (ballisticAmmo.Count, ballisticAmmo.Cycleable && (ballisticAmmo.Count != 0 || !ballisticAmmo.InfiniteUnspawned), ballisticAmmo.Capacity);
         }
 
         if (TryComp<MagazineAmmoProviderComponent>(weaponEntity, out var magazineAmmo))
@@ -312,18 +319,18 @@ public sealed partial class FireControlSystem : EntitySystem
                 {
                     var hasAmmo = magazineBallisticAmmo.Cycleable
                              && (magazineBallisticAmmo.Count != 0 || !magazineBallisticAmmo.InfiniteUnspawned);
-                    return (magazineBallisticAmmo.Count, hasAmmo);
+                    return (magazineBallisticAmmo.Count, hasAmmo, ballisticAmmo.Capacity);
                 }
 
                 if (TryComp<BasicEntityAmmoProviderComponent>(magazineEntity, out var magazineBasicAmmo))
                 {
                     var hasRecharge = HasComp<RechargeBasicEntityAmmoComponent>(magazineEntity);
-                    return (magazineBasicAmmo.Count, !hasRecharge);
+                    return (magazineBasicAmmo.Count, !hasRecharge, magazineBasicAmmo.Capacity);
                 }
             }
         }
 
-        return (null, false);
+        return (null, false, null);
     }
 
     /// <summary>

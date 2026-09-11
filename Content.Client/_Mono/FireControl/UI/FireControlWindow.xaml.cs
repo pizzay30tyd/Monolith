@@ -168,12 +168,12 @@ public sealed partial class FireControlWindow : FancyWindow
     /// <summary>
     /// Updates the text of a weapon button based on its selection state and manual reload status.
     /// </summary>
-    private void UpdateWeaponButtonText(Button button, FireControllableEntry controllable)
+    private void UpdateWeaponButtonText(Button button, FireControllableEntry controllable, Label label, ProgressBar progressBar)
     {
         if (button.Pressed && controllable.HasManualReload && controllable.AmmoCount.HasValue)
         {
-            button.Text = Loc.GetString("gunnery-gun-select-ammo", ("name", controllable.Name), ("ammo", controllable.AmmoCount.Value));
-
+            label.Text = Loc.GetString(("ammo", controllable.AmmoCount.Value));
+            progressBar.Value = controllable.AmmoCount.Value;
             if (controllable.AmmoCount.Value == 0)
             {
                 button.ModulateSelfOverride = Color.Red;
@@ -286,22 +286,62 @@ public sealed partial class FireControlWindow : FancyWindow
             }
             else
             {
+                var gunWrapper = new StripeBack()
+                {
+                    Margin = new Thickness(3, 1)
+                };
+
+                var gunBox = new BoxContainer
+                {
+                    Orientation = BoxContainer.LayoutOrientation.Vertical,
+                    HorizontalExpand = true
+                };
+                gunWrapper.AddChild(gunBox);
+
                 var button = new Button
                 {
                     ToggleMode = true,
                     Text = controllable.Name,
-                    StyleClasses = { "ButtonSquare OpenRight" },
+                    StyleClasses = { "ButtonSquare" },
                     HorizontalExpand = true,
                     Margin = new Thickness(4, 1)
                 };
 
+
+                var ammoBarWrapper = new PanelContainer()
+                {
+                    StyleClasses = {"BackgroundDark"},
+                    HorizontalExpand = true
+                };
+
+                var progressBar = new ProgressBar
+                {
+                    Name="AmmoBar",
+                    HorizontalExpand=true,
+                    Margin= new Thickness(5, 1),
+                    MinValue=0f,
+                    MaxValue=controllable.,
+                    Value=0f
+                };
+                ammoBarWrapper.AddChild(progressBar);
+
+                var label = new Label
+                {
+                    Text = "0",
+                    HorizontalAlignment = HAlignment.Center,
+                    VerticalAlignment = VAlignment.Center
+                };
+                ammoBarWrapper.AddChild(label);
+
+                gunBox.AddChild(button);
+                gunBox.AddChild(ammoBarWrapper);
                 button.OnToggled += _ =>
                 {
                     OnWeaponSelectionChanged?.Invoke();
                     UpdateAllWeaponButtonTexts();
                 };
 
-                ControllablesBox.AddChild(button);
+                ControllablesBox.AddChild(gunWrapper);
                 WeaponsList.Add(controllable.NetEntity, button);
 
                 UpdateWeaponButtonText(button, controllable);
