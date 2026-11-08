@@ -65,7 +65,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
     ];
 
     public bool ShowIFF { get; set; } = true;
-    public bool ShowIFFDetailed { get; set; } = true;
+    public bool ShowIFFDetailed { get; set; } = false;
     public bool ShowDocks { get; set; } = true;
 
     public float MaximumIFFDistance { get; set; } = 3000f; // Frontier // Mono - 3000 by default to not gigaclutter
@@ -841,8 +841,8 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                         : _detection.HandleUnknownMassLabel(grid.Owner)
                     : _shuttles.GetIFFLabel(grid, self: false, component: iff);
 
-                var shouldDrawIFF = ShowIFF && labelName != null;
-                var shouldDrawDetailedIFF = ShowIFFDetailed && shouldDrawIFF; // Mono
+                var shouldDrawIFF = labelName != null; //Mono - ShowIFF & labelName != null - > labelName != null; should render outlines regardless of if showIFF on
+                // var shouldDrawDetailedIFF = ShowIFFDetailed && shouldDrawIFF; // Mono
                 if (shouldDrawIFF)
                 {
                     if (IFFFilter != null)
@@ -975,7 +975,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                         handle.DrawString(Font, (uiPosition + labelOffset) * UIScale, mainLabel, UIScale * 0.9f, displayColor);
 
                         // Mono start - draw main stack of info
-                        if (shouldDrawDetailedIFF)
+                        if (ShowIFFDetailed)
                         {
                             // Get company label & draw
                             var companyLabel = !hideLabel ? lines[1] : Loc.GetString("shuttle-console-company-unknown");

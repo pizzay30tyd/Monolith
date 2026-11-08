@@ -37,7 +37,7 @@ public partial class ShuttleNavControl
     // code stolen from IFF beacon rendering code for grids
     private void DrawIFFBeacons(DrawingHandleScreen handle, Matrix3x2 worldToView, MapCoordinates mapPos, EntityUid? mapUid)
     {
-        if (!ShowIFF || mapUid == null)
+        if (mapUid == null) // Mono !ShowIFF || mapUid == null -> mapUid == null
             return;
 
         _beaconBlips.Clear();
@@ -77,15 +77,17 @@ public partial class ShuttleNavControl
             }
 
             NfAddBlipToList(_beaconBlips, isOutsideRadarCircle, uiPosition, uiXCentre, uiYCentre, color);
+            if(!ShowIFF && !ShowIFFDetailed)
+                continue;
 
             var distance = Vector2.Distance(worldPos, mapPos.Position);
             var displayedDistance = distance < 50f ? $"{distance:0.0}" : distance < 1000 ? $"{distance:0}" : $"{distance / 1000:0.0}k";
-
             var lines = Loc.GetString("shuttle-console-iff-label", ("name", label), ("distance", displayedDistance)).Split('\n');
             var mainLabel = lines[0];
-
             var labelOffset = new Vector2(blipSize, -handle.GetDimensions(Font, mainLabel, 0.9f).Y * 0.5f);
-            handle.DrawString(Font, (uiPosition + labelOffset) * UIScale, mainLabel, UIScale * 0.9f, color);
+
+            if (ShowIFF)
+                handle.DrawString(Font, (uiPosition + labelOffset) * UIScale, mainLabel, UIScale * 0.9f, color);
 
             if (!ShowIFFDetailed)
                 continue;
