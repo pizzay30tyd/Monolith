@@ -573,7 +573,7 @@
   - type: UserInterface # Mono
     interfaces:
       enum.RadarConsoleUiKey.Key:
-        type: RadarConsoleBoundUserInterface
+        type: MassScannerBoundUserInterface
   - type: IntrinsicUI # Mono
     uis:
       enum.RadarConsoleUiKey.Key:

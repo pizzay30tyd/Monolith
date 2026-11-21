@@ -174,7 +174,7 @@
   - type: UserInterface
     interfaces:
       enum.RadarConsoleUiKey.Key:
-        type: RadarConsoleBoundUserInterface
+        type: MassScannerBoundUserInterface
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000

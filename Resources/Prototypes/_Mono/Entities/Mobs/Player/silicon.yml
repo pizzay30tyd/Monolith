@@ -139,7 +139,7 @@
   - type: UserInterface
     interfaces:
       enum.RadarConsoleUiKey.Key:
-        type: RadarConsoleBoundUserInterface
+        type: MassScannerBoundUserInterface
       enum.SiliconLawsUiKey.Key:
         type: SiliconLawBoundUserInterface
       enum.RemoteDeviceUiKey.Key: # Corvax-Next-AiRemoteControl

@@ -47,7 +47,7 @@
   - type: UserInterface
     interfaces:
       enum.RadarConsoleUiKey.Key:
-        type: RadarConsoleBoundUserInterface
+        type: MassScannerBoundUserInterface
   - type: IntrinsicUI
     uis:
       enum.RadarConsoleUiKey.Key:

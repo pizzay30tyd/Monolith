@@ -1,39 +1,65 @@
-<controls:FancyWindow xmlns="https://spacestation14.io"
-                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
-                      xmlns:ui="clr-namespace:Content.Client.Shuttles.UI"
-                      Title="{Loc 'radar-console-window-title'}"
-                      SetSize="648 672"
-                      MinSize="256 256">
-    <LayoutContainer Margin="4">
-        <!-- Mono - wrap -->
-        <ui:ShuttleNavControl Name="RadarScreen"
-                         HorizontalExpand = "True"
-                         VerticalExpand = "True"/>
-    </LayoutContainer>
-    <!-- Mono - IFF Settings -->
-    <BoxContainer Orientation="Vertical"
-                Margin="2 2 2 2"
-                VerticalExpand="True"
-                HorizontalExpand="True">
-
-        <Button Name="IFFDetailedToggle"
-        Text="{Loc 'shuttle-console-iff-detailed-short'}"
-        TextAlign="Center"
-        StyleClasses="ButtonSquare"
-        ToggleMode="True"
-        VerticalExpand="False"
-        HorizontalAlignment="Left"
-        Pressed="True"/>
-
-        <Button Name="IFFToggle"
-        Text="{Loc 'shuttle-console-iff-toggle-short'}"
-        TextAlign="Center"
-        StyleClasses="ButtonSquare"
-        ToggleMode="True"
-        VerticalExpand="False"
-        HorizontalAlignment="Left"
-        Pressed="True"/>
-
-
+<controls:FancyWindow
+    xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    xmlns:ui="clr-namespace:Content.Client.Shuttles.UI"
+    xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    Title="{Loc 'radar-console-window-title'}"
+    SetSize="1000 800"
+    MinSize="500 400"
+    >
+    <BoxContainer Orientation="Vertical">
+        <PanelContainer VerticalExpand="True" HorizontalExpand="True" Margin="0 8 0 2">
+            <BoxContainer Orientation="Vertical">
+                <PanelContainer VerticalExpand="True" HorizontalExpand="True" Margin="0 8 0 2">
+                    <PanelContainer.PanelOverride>
+                        <graphics:StyleBoxFlat BorderThickness="7" BorderColor="#252525" BackgroundColor="#3d474d"/>
+                    </PanelContainer.PanelOverride>
+                    <PanelContainer VerticalExpand="True" HorizontalExpand="True" Margin="4 4 4 4">
+                        <PanelContainer.PanelOverride>
+                            <graphics:StyleBoxFlat BorderThickness="2" BorderColor="#333333" BackgroundColor="#181818"/>
+                        </PanelContainer.PanelOverride>
+                        <BoxContainer Orientation="Vertical" HorizontalAlignment="Center">
+                            <PanelContainer VerticalExpand="False" HorizontalExpand="True" SetWidth="970">
+                                <PanelContainer.PanelOverride>
+                                    <graphics:StyleBoxFlat BorderThickness="2" BorderColor="#333333" BackgroundColor="#121212"/>
+                                </PanelContainer.PanelOverride>
+                                <BoxContainer Name="ModeButtons"
+                                            Orientation="Horizontal"
+                                            HorizontalAlignment="Stretch"
+                                            HorizontalExpand="True"
+                                            MinSize="52 52"
+                                            Margin="5">
+                                    <Button Name="NavModeButton"
+                                            ToggleMode="True"
+                                            HorizontalExpand="True"
+                                            VerticalExpand="True"
+                                            Text="NAV"
+                                            StyleClasses="ButtonSquare"/>
+                                    <Button Name="MapModeButton"
+                                            ToggleMode="True"
+                                            HorizontalExpand="True"
+                                            VerticalExpand="True"
+                                            Text="MAP"
+                                            StyleClasses="ButtonSquare"/>
+                                    <Button Name="DockModeButton"
+                                            ToggleMode="True"
+                                            HorizontalExpand="True"
+                                            VerticalExpand="True"
+                                            Text="DOCK"
+                                            StyleClasses="ButtonSquare"/>
+                                </BoxContainer>
+                            </PanelContainer>
+                            <BoxContainer Name="Contents"
+                                        HorizontalAlignment="Stretch"
+                                        VerticalExpand="True"
+                                        Margin="5">
+                                <ui:NavScreen Name="RadarContainer" Visible="False"/>
+                                <ui:MapScreen Name="MapRadarContainer" Visible="False"/>
+                                <ui:DockingScreen Name="DockContainer" Visible="False"/>
+                            </BoxContainer>
+                    </PanelContainer>
+                </PanelContainer>
+            </BoxContainer>
+        </PanelContainer>
     </BoxContainer>
 </controls:FancyWindow>

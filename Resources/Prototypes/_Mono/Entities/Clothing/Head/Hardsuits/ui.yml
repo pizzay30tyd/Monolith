@@ -62,7 +62,7 @@
   - type: UserInterface
     interfaces:
       enum.RadarConsoleUiKey.Key:
-        type: RadarConsoleBoundUserInterface
+        type: MassScannerBoundUserInterface
   - type: FlashImmunity
   - type: NightVision # Gen 2 quadtube
     relayOverlay: true
@@ -194,7 +194,7 @@
   - type: UserInterface
     interfaces:
       enum.RadarConsoleUiKey.Key:
-        type: RadarConsoleBoundUserInterface
+        type: MassScannerBoundUserInterface
   - type: FlashImmunity
   - type: NightVision # Gen 4
     relayOverlay: true

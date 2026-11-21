@@ -50,7 +50,7 @@
       enum.MechUiKey.Key:
         type: MechBoundUserInterface
       enum.RadarConsoleUiKey.Key:
-        type: RadarConsoleBoundUserInterface
+        type: MassScannerBoundUserInterface
   - type: MeleeWeapon
     canWideSwing: false
     hidden: true

@@ -78,7 +78,7 @@
       enum.BorgSwitchableTypeUiKey.SelectBorgType:
         type: BorgSelectTypeUserInterface
       enum.RadarConsoleUiKey.Key: # Mono
-        type: RadarConsoleBoundUserInterface
+        type: MassScannerBoundUserInterface
   - type: ActivatableUI
     key: enum.BorgUiKey.Key
   - type: SiliconLawBound
