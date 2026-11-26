@@ -337,25 +337,26 @@ public sealed partial class FireControlWindow : FancyWindow
             }
             else
             {
-                var button = new Button
-                {
-                    ToggleMode = true,
-                    Text = controllable.Name,
-                    StyleClasses = { "ButtonSquare OpenRight" },
-                    HorizontalExpand = true,
-                    Margin = new Thickness(4, 1)
-                };
+                CreateNewControllableButton(controllable);
+                // var button = new Button
+                // {
+                //     ToggleMode = true,
+                //     Text = controllable.Name,
+                //     StyleClasses = { "ButtonSquare OpenRight" },
+                //     HorizontalExpand = true,
+                //     Margin = new Thickness(4, 1)
+                // };
 
-                button.OnToggled += _ =>
-                {
-                    OnWeaponSelectionChanged?.Invoke();
-                    UpdateAllWeaponButtonTexts();
-                };
+                // button.OnToggled += _ =>
+                // {
+                //     OnWeaponSelectionChanged?.Invoke();
+                //     UpdateAllWeaponButtonTexts();
+                // };
 
-                ControllablesBox.AddChild(button);
-                WeaponsList.Add(controllable.NetEntity, button);
+                // ControllablesBox.AddChild(button);
+                // WeaponsList.Add(controllable.NetEntity, button);
 
-                UpdateWeaponButtonText(button, controllable);
+                // UpdateWeaponButtonText(button, controllable);
             }
         }
 
@@ -379,5 +380,9 @@ public sealed partial class FireControlWindow : FancyWindow
     public void ClearLock()
     {
         OnLock?.Invoke(new SensorsSetLockMessage { Target = null });
+    }
+
+    private void CreateNewControllableButton(FireControllableEntry controllable){
+
     }
 }

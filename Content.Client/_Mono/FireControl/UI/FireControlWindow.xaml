@@ -136,7 +136,28 @@
                                         </PanelContainer.PanelOverride>
                                         <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
                                             <BoxContainer Name="ControllablesBox" Orientation="Vertical"
-                                                         HorizontalExpand="True" StyleClasses="transparentItemList"/>
+                                                         HorizontalExpand="True" StyleClasses="transparentItemList">
+                                        <BoxContainer Name="ControllableBox" Orientation="Vertical" HorizontalExpand="True" StyleClasses="transparentItemList">
+                                        <PanelContainer VerticalExpand="False" HorizontalExpand="True">
+                                            <PanelContainer.PanelOverride>
+                                                <gfx:StyleBoxFlat BorderThickness="4" BorderColor="#2e2e2e" BackgroundColor="#1c1c1c" />
+                                            </PanelContainer.PanelOverride>
+                                                    <Button ToggleMode="True"
+                                                        Text="TEST GUN"
+                                                        StyleClasses="ButtonSquare OpenRight"
+                                                        HorizontalExpand="True"
+                                                        Margin = "4 1"
+                                                    />
+                                            </PanelContainer>
+                                        <controls:StripeBack VerticalExpand="False" HorizontalExpand="True" Margin = "4 1">
+                                                    <ProgressBar Name="FireRateBar" HorizontalExpand="True"
+                                                                        Margin="4 1"
+                                                                        MinValue="0.0"
+                                                                        MaxValue="1.0"
+                                                                        Value="1.0"/>
+                                        </controls:StripeBack>
+                                        </BoxContainer>
+                                        </BoxContainer>
                                         </ScrollContainer>
                                     </PanelContainer>
                                 </BoxContainer>
