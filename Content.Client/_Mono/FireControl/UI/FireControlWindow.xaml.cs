@@ -383,6 +383,31 @@ public sealed partial class FireControlWindow : FancyWindow
     }
 
     private void CreateNewControllableButton(FireControllableEntry controllable){
+        var boxContainer = new BoxContainer
+        {
+            Name=controllable.Name,
+            Orientation="Vertical",
+            HorizontalExpand=true
+        };
+
+        var button = new Button
+        {
+            ToggleMode = true,
+            Text = controllable.Name,
+            StyleClasses = { "ButtonSquare OpenRight" },
+            HorizontalExpand = true
+        };
+
+        var stripeBack = new stripeBack
+        {
+            HorizontalExpand = true
+        };
+
+        var barBox = new BoxContainer
+        {
+
+        };
+
 
     }
 }

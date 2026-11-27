@@ -81,7 +81,7 @@
                                         <Button Name="UnselectAllButton" Access="Public" Text="{Loc 'gunnery-unselect-all'}"
                                                 StyleClasses="OpenLeft" HorizontalExpand="True"/>
                                     </BoxContainer>
-                                    <PanelContainer VerticalExpand="False" HorizontalExpand="True">
+                                    <!-- <PanelContainer VerticalExpand="False" HorizontalExpand="True">
                                         <PanelContainer.PanelOverride>
                                             <gfx:StyleBoxFlat BorderThickness="4" BorderColor="#262626" BackgroundColor="#111111" />
                                         </PanelContainer.PanelOverride>
@@ -108,7 +108,7 @@
                                                         StyleClasses="ButtonSquare" HorizontalExpand="True" Margin="4 4"/>
                                             </PanelContainer>
                                         </BoxContainer>
-                                    </PanelContainer>
+                                    </PanelContainer> -->
                                     <PanelContainer VerticalExpand="False" HorizontalExpand="True">
                                         <PanelContainer.PanelOverride>
                                             <gfx:StyleBoxFlat BorderThickness="4" BorderColor="#262626" BackgroundColor="#111111" />
@@ -137,25 +137,33 @@
                                         <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
                                             <BoxContainer Name="ControllablesBox" Orientation="Vertical"
                                                          HorizontalExpand="True" StyleClasses="transparentItemList">
-                                        <BoxContainer Name="ControllableBox" Orientation="Vertical" HorizontalExpand="True" StyleClasses="transparentItemList">
-                                        <PanelContainer VerticalExpand="False" HorizontalExpand="True">
-                                            <PanelContainer.PanelOverride>
-                                                <gfx:StyleBoxFlat BorderThickness="4" BorderColor="#2e2e2e" BackgroundColor="#1c1c1c" />
-                                            </PanelContainer.PanelOverride>
+                                        <BoxContainer Name="ControllableBox" Orientation="Vertical" HorizontalExpand="True">
                                                     <Button ToggleMode="True"
                                                         Text="TEST GUN"
                                                         StyleClasses="ButtonSquare OpenRight"
                                                         HorizontalExpand="True"
-                                                        Margin = "4 1"
                                                     />
-                                            </PanelContainer>
-                                        <controls:StripeBack VerticalExpand="False" HorizontalExpand="True" Margin = "4 1">
+                                            <controls:StripeBack HorizontalExpand="True">
+                                        <BoxContainer Name="BarBox" Orientation="Horizontal" HorizontalExpand="True"
+                                            SetHeight="20">
                                                     <ProgressBar Name="FireRateBar" HorizontalExpand="True"
-                                                                        Margin="4 1"
                                                                         MinValue="0.0"
                                                                         MaxValue="1.0"
-                                                                        Value="1.0"/>
-                                        </controls:StripeBack>
+                                                                        Value="1.0"
+                                                                        Margin = "2 2 2 2"/>
+                                                <PanelContainer Name="AmmoBarWrapper" HorizontalExpand="True"
+                                                    Margin = "2 2 2 2">
+                                                    <ProgressBar Name="AmmoBar" HorizontalExpand="True"
+                                                                        MinValue="0.0"
+                                                                        MaxValue="1.0"
+                                                                        Value="1.0"
+                                                                        />
+                                                    <Label Name="AmmoCount" HorizontalExpand="True" VerticalExpand="True" Text="20"
+                                               StyleClasses="LabelKeyText" HorizontalAlignment="Center"/>
+                                               </PanelContainer>
+                                        </BoxContainer>
+                                            </controls:StripeBack>
+
                                         </BoxContainer>
                                         </BoxContainer>
                                         </ScrollContainer>
