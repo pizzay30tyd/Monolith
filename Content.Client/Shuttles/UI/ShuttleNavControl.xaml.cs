@@ -463,25 +463,37 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
     {
         base.KeyBindDown(args);
 
-        if (args.Function != EngineKeyFunctions.UIClick)
+        if (args.Function != EngineKeyFunctions.UIClick  && args.Function != ContentKeyFunctions.RotateShield) // Mono - added shield keybind condition
             return;
 
-        _isMouseDown = true;
-        _lastMousePos = args.RelativePosition;
-        TryFireAtPosition(args.RelativePosition);
+        if(args.Function == EngineKeyFunctions.UIClick){
+            _isMouseDown = true;
+            _lastMousePos = args.RelativePosition;
+            TryFireAtPosition(args.RelativePosition);
+        }
+
+        if(args.Function == ContentKeyFunctions.RotateShield){
+            TryRotateShield(args.RelativePosition);
+        }
     }
 
     protected override void KeyBindUp(GUIBoundKeyEventArgs args)
     {
         base.KeyBindUp(args);
 
-        if (args.Function != EngineKeyFunctions.UIClick)
+        if (args.Function != EngineKeyFunctions.UIClick && args.Function != ContentKeyFunctions.RotateShield) // Mono - added shield keybind condition
             return;
 
-        _isMouseDown = false;
+        if(args.Function == EngineKeyFunctions.UIClick){
+            _isMouseDown = false;
 
-        var coords = GetMouseEntityCoordinates(args.RelativePosition);
-        OnRadarClick?.Invoke(coords);
+            var coords = GetMouseEntityCoordinates(args.RelativePosition);
+            OnRadarClick?.Invoke(coords);
+        }
+
+        if(args.Function == ContentKeyFunctions.RotateShield){
+
+        }
     }
 
     protected override void FrameUpdate(FrameEventArgs args)
@@ -519,6 +531,12 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
     {
         var coords = GetMouseEntityCoordinates(relativePosition);
         OnRadarClick?.Invoke(coords);
+    }
+
+    private void TryRotateShield(Vector2 relativePosition)
+    {
+        var coords = GetMouseEntity(relativePosition);
+        OnRadarShieldRotate?.Invoke(coords);
     }
 
     /// <summary>

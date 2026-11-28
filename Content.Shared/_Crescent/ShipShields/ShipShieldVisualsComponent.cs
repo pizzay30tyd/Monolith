@@ -31,4 +31,19 @@ public sealed partial class ShipShieldVisualsComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public float Padding = 50f;
+
+
+    /// Mono
+    /// <summary>
+    /// If the shield is capable of rotating its arc
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool CanRotate = false;
+
+    /// Mono
+    /// <summary>
+    /// Represents how fast the shield can rotate (if CanRotate is true), in degrees per second
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float RotationSpeed = 10f;
 }

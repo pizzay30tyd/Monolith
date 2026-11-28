@@ -11,6 +11,7 @@ using Robust.Client.Physics;
 using Robust.Shared.Prototypes;
 using System.Runtime.InteropServices;
 using Robust.Client.GameObjects;
+using Robust.Shared.Utility;
 
 namespace Content.Client._Crescent.ShipShields;
 

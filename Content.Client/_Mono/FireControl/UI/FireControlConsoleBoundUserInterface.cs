@@ -42,6 +42,12 @@ public sealed class FireControlConsoleBoundUserInterface : BoundUserInterface
             }
         };
 
+        _window.Radar.OnRadarShieldRotate += (coords) =>
+        {
+            var netCoords = EntMan.GetNetCoordinates(coords);
+            TryRotateShield(netCoords);
+        }
+
         _window.Radar.DefaultCursorShape = Control.CursorShape.Crosshair;
 
         // Add event handler for when weapons are selected/deselected

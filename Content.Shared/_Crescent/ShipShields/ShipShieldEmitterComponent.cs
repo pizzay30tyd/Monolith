@@ -97,6 +97,7 @@ public sealed partial class ShipShieldEmitterComponent : Component
     /// <summary>
     /// Defines the arc of the shield in degrees starting from the frontal point of the ship, 360f is full coverage
     /// Setting it between 180 < x < 360 causes unintended behaviour, set only to 360 or less than or equal to 180
+    /// THIS WILL HAVE SLIGHTLY DIFFERENT BEHAVIOR IF THE SHIELD CAN ROTATE - if shield is omnidirectional the shield arc will scale differently depending on the ship size
     /// </summary>
     [DataField]
     public float ShieldArc = 360f;
@@ -107,4 +108,18 @@ public sealed partial class ShipShieldEmitterComponent : Component
     /// </summary>
     [DataField]
     public float ShieldDirection = 0f;
+
+    /// Mono
+    /// <summary>
+    /// If the shield is capable of rotating its arc
+    /// </summary>
+    [DataField]
+    public bool CanRotate = false;
+
+    /// Mono
+    /// <summary>
+    /// Represents how fast the shield can rotate (if CanRotate is true), in degrees per second
+    /// </summary>
+    [DataField]
+    public float RotationSpeed = 10f;
 }

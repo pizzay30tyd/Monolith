@@ -96,6 +96,10 @@ binds:
 - function: ResetZoom
   type: State
   key: NumpadNum5
+#Gunnery Console
+- function: RotateShield
+  type: State
+  key: Shift
 # Misc
 - function: ShowEscapeMenu
   type: State
